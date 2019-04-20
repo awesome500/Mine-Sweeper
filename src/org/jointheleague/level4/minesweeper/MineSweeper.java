@@ -47,6 +47,18 @@ public class MineSweeper {
     void initializeMines(int firstCellCol, int firstCellRow) {
         // TODO fill in
         // Hint, use `Optional.of(...)` to create a non-empty `Optional`.
+    		int a,b;
+    		boolean[][] field = new boolean [HEIGHT][WIDTH];
+    		for (int i = 0; i < NUM_MINES; i++) {
+    			do {
+    				a = rng.nextInt(WIDTH);
+    				b = rng.nextInt(HEIGHT);
+    			} while (a == firstCellCol && b == firstCellRow || field[b][a]);
+    			field[b][a] = true;
+    			
+    		}
+    		mines = Optional.of(field);
+    		numCellsToOpen = WIDTH * HEIGHT - NUM_MINES;
     }
     
     /**
@@ -111,6 +123,19 @@ public class MineSweeper {
                 //      display "You Win" in a dialog box
                 //    - Extra credit: If the number of neighboring cells is 0,
                 //      automatically open all neighboring cells
+                
+                if (numCellsToOpen == 0) {
+                		initializeMines(row,col);
+                }else if (mines[row][col]){
+                		
+                }else {
+                		numCellsToOpen -= 1;
+                		if (numCellsToOpen == 0) {
+                			//print You Win in the dialog box
+                		} else {
+                			getNeighboringMinesCount
+                		}
+                }
                 b.addActionListener(null); // TODO replace null with lambda expression
                 gameBoardPanel.add(b);
             })
